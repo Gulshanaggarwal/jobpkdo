@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.alert-success {
+  @apply bg-green-600 text-white rounded-md py-3;
+}
+.alert-error {
+  @apply bg-red-500 text-white rounded-md py-3;
+}
+.alert-info {
+  @apply bg-blue-500 text-white rounded-md py-3;
+}
+
+.searchbar::-webkit-scrollbar {
+  width: 5px;
+}
+.searchbar::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.searchbar::-webkit-scrollbar-thumb {
+  background-color: #fbbf24;
+}

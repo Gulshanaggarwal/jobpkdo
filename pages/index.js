@@ -5,6 +5,8 @@ import useTweet from "../hooks/useTweet";
 import TweetBox from "../components/tweetBox";
 import Masnory, { ResponsiveMasonry } from "react-responsive-masonry";
 import Head from "next/head";
+import VoiceContextProvider from "../contexts/voiceModalContext";
+import VoiceModal from "../components/Modal.js/voiceModal";
 
 
 
@@ -21,8 +23,11 @@ export default function Home() {
 
 
 
+
+
+
   return (
-    <div>
+    <VoiceContextProvider>
       <Head>
         <title>JOBPkdo</title>
         <meta charSet="UTF-8" />
@@ -43,6 +48,6 @@ export default function Home() {
         {isError && <p className="text-xl text-center font-medium py-8">{isError}</p>}
         {!isLoading && !isError && (!noMore ? <button className="mt-16 w-full columns-1 bg-amber-600 text-white rounded-md py-2" type="button" onClick={() => setFire(fire + 1)}>Load more..</button> : <p className="text-xl text-center font-medium py-8"> Sorry, No more results 🤪</p>)}
       </main>
-    </div>
+    </VoiceContextProvider>
   )
 }

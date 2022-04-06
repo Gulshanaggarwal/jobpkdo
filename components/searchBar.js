@@ -72,15 +72,15 @@ export default function SearchBar() {
     }
 
 
-    const handleSearch = () => {
+    const handleSearch = (val) => {
 
         const params = router.query;
 
-        if (searchValue !== "") {
+        if (val !== "") {
             router.push({
                 query: {
                     ...params,
-                    q: searchValue.trim()
+                    q: val.trim()
                 }
             })
         }
@@ -152,7 +152,12 @@ export default function SearchBar() {
                     return;
                 }
                 hideVoiceModal();
+                voiceDispatch({
+                    type: "CLEAN",
+                })
+
                 setSearchValue(transcription.results.channels[0].alternatives[0].transcript);
+                handleSearch(transcription.results.channels[0].alternatives[0].transcript)
 
             })
 
@@ -177,7 +182,7 @@ export default function SearchBar() {
                             showVoiceModal();
                         }} className="bg-white p-3 rounded-tl-md rounded-bl-md"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M12 16c2.206 0 4-1.794 4-4V6c0-2.217-1.785-4.021-3.979-4.021a.933.933 0 0 0-.209.025A4.006 4.006 0 0 0 8 6v6c0 2.206 1.794 4 4 4z"></path><path d="M11 19.931V22h2v-2.069c3.939-.495 7-3.858 7-7.931h-2c0 3.309-2.691 6-6 6s-6-2.691-6-6H4c0 4.072 3.061 7.436 7 7.931z"></path></svg></button>
                         <input value={searchValue} className="outline-none py-3 w-full  px-3 font-thin 230-270px:text-xs 271-300px:text-xs 301-330px:text-xs 331-360px:text-xs" type="text" placeholder="Search for Jobs, kills here.." onChange={handleSearchChange} />
-                        <button type="button" className="bg-black p-3 rounded-tr-md rounded-br-md" onClick={handleSearch}>
+                        <button type="button" className="bg-black p-3 rounded-tr-md rounded-br-md" onClick={() => handleSearch(searchValue)}>
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="white">
                                 <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
                             </svg>

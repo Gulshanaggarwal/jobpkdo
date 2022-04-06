@@ -17,7 +17,7 @@ export default function VoiceModal() {
                 </button>
                 {status === "Listening" && <p>Listening...</p>}
                 {status === "Processing" && <p>Hold on, results are on the way...</p>}
-                {status === "Error" && <p>couldn't connect try again!</p>}
+                {status === "Error" && <p className="text-red-500">couldn't connect try again!</p>}
             </div>
         </div >
     )

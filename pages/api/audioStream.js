@@ -3,11 +3,10 @@ const { Deepgram } = require('@deepgram/sdk');
 const WebSocket = require("ws");
 
 
-
 const audioStream = async (req, res) => {
     const sampleRate = 16000;
 
-    const deepgram = new Deepgram('057357930d351bb8abb8d8645b69728773f67299');
+    const deepgram = new Deepgram(process.env.DEEPGRAM_API_TOKEN);
     const mimetype = "audio/ogg";
 
 
@@ -21,8 +20,11 @@ const audioStream = async (req, res) => {
                 buffer: stream, mimetype
             },
                 {
-                    punctuate: true,
-                    language: 'en-IN'
+                    language: 'en-IN',
+                    numerals: true,
+                    search: ["jobs", "developer", "freelance"],
+                    keywords: ['javascript:2', 'python:2', 'full:2', 'stack:2', 'developer:3', 'jobs:4', 'freelance:4', 'golang:2', 'react:2', 'frontend:2', 'backend:2', 'nodejs:2', 'hello:-10', 'hi:-10', 'the:-10', 'my:-10', 'and:-10', 'we:-10', 'i:-10']
+
                 }).then((transcription) => socket.emit('transcription-result', transcription))
                 .catch((err) => socket.emit('transcription-result', null))
 

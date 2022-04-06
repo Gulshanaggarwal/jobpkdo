@@ -2,7 +2,7 @@ const { Server } = require("socket.io");
 const { Deepgram } = require('@deepgram/sdk');
 const WebSocket = require("ws");
 
-
+//audiostream
 const audioStream = async (req, res) => {
     const sampleRate = 16000;
 

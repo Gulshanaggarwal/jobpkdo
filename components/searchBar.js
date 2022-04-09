@@ -40,7 +40,7 @@ export default function SearchBar() {
 
     const socketInitializer = async () => {
         //await fetch('http://localhost:5000')
-        socket = io.connect('http://localhost:5000')
+        socket = io.connect(process.env.SERVER_URL)
         socket.on('mic-ready', () => {
             const id = nanoid();
             dispatchToast(id, "start using Microphone", "info", dispatch);

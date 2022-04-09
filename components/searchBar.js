@@ -39,13 +39,14 @@ export default function SearchBar() {
     useEffect(() => socketInitializer(), []);
 
     const socketInitializer = async () => {
-        await fetch('/api/audioStream')
-        socket = io()
-
-        socket.on('connect', () => {
-            console.log('connected')
+        //await fetch('http://localhost:5000')
+        socket = io.connect('http://localhost:5000')
+        socket.on('mic-ready', () => {
+            const id = nanoid();
+            dispatchToast(id, "start using Microphone", "info", dispatch);
+            removeToast(id, dispatch);
         })
-        socket.on('can-open-mic', (msg) => console.log(msg));
+
     }
 
 
@@ -137,7 +138,6 @@ export default function SearchBar() {
 
 
             socket.on('transcription-result', (transcription) => {
-                console.log(transcription);
                 if (!transcription || transcription.results.channels[0].alternatives[0].words.length === 0) {
 
                     voiceDispatch({

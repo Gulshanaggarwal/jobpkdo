@@ -33,3 +33,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+#server_node_modules
+server/node_modules
+
+#Server_env
+server/.env

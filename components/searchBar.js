@@ -39,8 +39,8 @@ export default function SearchBar() {
     useEffect(() => socketInitializer(), []);
 
     const socketInitializer = async () => {
-        //await fetch('http://localhost:5000')
-        socket = io.connect(process.env.SERVER_URL)
+
+        socket = io.connect(process.env.NEXT_PUBLIC_SERVER_URL)
         socket.on('mic-ready', () => {
             const id = nanoid();
             dispatchToast(id, "start using Microphone", "info", dispatch);

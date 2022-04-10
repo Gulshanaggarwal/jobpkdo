@@ -1,6 +1,7 @@
 const app = require('express')();
 const http = require('http').Server(app);
 const { Deepgram } = require('@deepgram/sdk');
+const cors = require("cors");
 const io = require("socket.io")(http, {
     cors: {
         origin: process.env.ALLOWED_ORIGIN,
@@ -11,10 +12,15 @@ const port = process.env.PORT || 5000;
 
 require("dotenv").config();
 
+app.use(cors());
 
 
 const deepgram = new Deepgram(process.env.DEEPGRAM_API_TOKEN);
 const mimetype = "audio/ogg";
+
+app.get("/", (req, res) => {
+    res.send("Welcome to server")
+})
 
 io.on('connection', (socket) => {
     socket.emit("mic-ready");

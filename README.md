@@ -8,21 +8,48 @@
 
 https://jobpkdo.netlify.app/
 
+## Features
+
+- Lots of JOB & Internships
+- Easy Voice Search
+- Share Or Copy URL
+- Easy SignIn via Google
+- Save For Later
+
 ## Tech-Stack
 
 `NEXT.JS`
 `MONGODB`
 `TailwindCSS`
 `DaisyUI`
+`SocketIO`
+`DEEPGRAM SDK`
 
 ## Getting Started
 
-First, run the development server:
+- Clone the Repo:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+  ```bash
+  git clone https://github.com/Gulshanaggarwal/jobpkdo
+  ```
+
+- To run the Frontend development server:
+
+  ```bash
+  npm run dev
+  # or
+  yarn dev
+  ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+- To run the Backend development server:
+
+  ```bash
+  cd server
+  nodemon
+  # or
+  npm start
+  ```
+
+Open [http://localhost:5000](http://localhost:5000) with your browser to see the result.

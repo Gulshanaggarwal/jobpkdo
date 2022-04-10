@@ -12,14 +12,25 @@ const port = process.env.PORT || 5000;
 
 require("dotenv").config();
 
-app.use(cors());
+const whitelist = [process.env.ALLOWED_ORIGIN]
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
+    }
+}
+
+app.use(cors(corsOptions));
 
 
 const deepgram = new Deepgram(process.env.DEEPGRAM_API_TOKEN);
 const mimetype = "audio/ogg";
 
 app.get("/", (req, res) => {
-    res.send("Welcome to server")
+    res.send("Hello 👋 from Server")
 })
 
 io.on('connection', (socket) => {
